@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Storage dApp - Polygon Amoy</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.9.0/dist/web3.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="bg-gray-100 min-h-screen p-8">
+    <div class="loader" id="loader">
+      <p class="loaderNote" id="loaderNote">Loading please wait</p>
+    </div>
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div class="flex justify-between items-start mb-4">
+          <h1 class="text-2xl font-bold">Decentralized File Storage</h1>
+          <div id="networkStatus" class="text-sm"></div>
+        </div>
+
+        <!-- Wallet Connection -->
+        <div class="flex items-center gap-4">
+          <button
+            id="connectWallet"
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+          >
+            Connect Wallet
+          </button>
+          <p id="walletStatus" class="text-gray-600"></p>
+        </div>
+      </div>
+
+      <!-- Upload Section -->
+      <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <h2 class="text-xl font-semibold mb-4">Upload File</h2>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">File</label>
+            <input
+              type="file"
+              id="fileInput"
+              disabled
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2"
+            />
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700"
+                >Storage Type</label
+              >
+              <select
+                id="storageType"
+                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2"
+              ></select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700"
+                >Storage Class</label
+              >
+              <select
+                id="storageClass"
+                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2"
+              ></select>
+            </div>
+          </div>
+
+          <button
+            id="uploadButton"
+            disabled
+            class="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors disabled:opacity-50"
+          >
+            Upload File
+          </button>
+
+          <div id="txInfo" style="display: none">
+            <p>Transaction Hash: <span id="txHash"></span></p>
+            <a
+              id="txLink"
+              class="text-blue-600 hover: underline hover: cursor-pointer"
+              target="_blank"
+              >View Transaction Here</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Files List -->
+      <div class="bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-xl font-semibold mb-4">Your Files</h2>
+        <!-- Table for larger screens -->
+        <div class="hidden md:block">
+          <table class="min-w-full bg-white">
+              <thead>
+                  <tr class="w-full bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                      <th class="py-3 px-4 text-left">File Name</th>
+                      <th class="py-3 px-4 text-left">File Type</th>
+                      <th class="py-3 px-4 text-left">File Size</th>
+                      <th class="py-3 px-4 text-left">Uploaded</th>
+                      <th class="py-3 px-4 text-left">Actions</th>
+                  </tr>
+              </thead>
+              <tbody id="fileListTable">
+                  <!-- File rows will be inserted here by createFileElement -->
+              </tbody>
+          </table>
+        </div>
+
+      <!-- List for smaller screens -->
+      <div class="block md:hidden">
+          <div id="fileList" class="space-y-4">
+              <!-- File items will be inserted here by createFileElement -->
+          </div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
