@@ -10,8 +10,8 @@ export async function initializeClient() {
     // Provision the space
     await myAccount.provision(did);
 
-    // Set the current space
-    await client.setCurrentSpace(did);
+    // // Set the current space
+    // await client.setCurrentSpace(did);
   } catch (error) {
     console.error("Error setting space:", error);
   }
