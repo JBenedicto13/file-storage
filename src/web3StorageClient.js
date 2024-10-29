@@ -3,18 +3,18 @@ import { create } from "@web3-storage/w3up-client";
 export async function initializeClient() {
   const client = await create();
   const did = "did:key:z6Mkqyg4hcYcYKrYg2g2yWVWNr8Hg2RbSXfe3bR3NCk7McNF";
-  try {
-    // Login to the account
-    const myAccount = await client.login("benedictojohnbenedict@gmail.com");
+  // try {
+  //   // Login to the account
+  //   const myAccount = await client.login("benedictojohnbenedict@gmail.com");
 
-    // Provision the space
-    await myAccount.provision(did);
+  //   // Provision the space
+  //   // await myAccount.provision(did);
 
-    // // Set the current space
-    // await client.setCurrentSpace(did);
-  } catch (error) {
-    console.error("Error setting space:", error);
-  }
+  //   // Set the current space
+  //   // await client.setCurrentSpace(did);
+  // } catch (error) {
+  //   console.error("Error setting space:", error);
+  // }
 
   return client;
 }
