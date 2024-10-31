@@ -2,10 +2,7 @@
 import { Web3 } from "web3";
 import { contractABI } from "./contractABI";
 import { POLYGON_AMOY_CONFIG, CONTRACT_ADDRESS } from "./config";
-import {
-  initializeClient,
-  uploadFile as uploadToWeb3Storage,
-} from "./web3StorageClient.js";
+import { uploadToTatum } from "./tatumClient";
 
 // Loader Functions
 // Show the loader
@@ -175,11 +172,9 @@ class FileStorageApp {
       const hash = await this.createFileHash(file);
 
       try {
-        // Initialize Web3 Storage client
-        const client = await initializeClient();
-
-        // Upload file to Web3 Storage
-        const cid = await uploadToWeb3Storage(client, file);
+        // Upload file to Tatum
+        const response = await uploadToTatum(file);
+        const cid = response.ipfsHash;
 
         if (cid) {
           // Generate a simple base URL (in production, you'd use actual IPFS or storage URL)
